@@ -127,6 +127,24 @@ pnpm i -D @uni-helper/uni-ui-types
 
 ### 小程序端Pinia持久化
 
+状态管理：pinia
+
+持久化在与网页端有所不同：
+
+```js
+// 网页端API
+localStorage.setItem()
+localStorage.getItem()
+
+// 小程序端API
+wx.setStorageSync()
+wx.getStorageSync()
+
+// 兼容多端API
+uni.setStorageSync()
+uni.getStorageSync()
+```
+
 
 
 
