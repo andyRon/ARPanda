@@ -10,7 +10,7 @@ const memberStore = useMemberStore()
     <button
       @tap="
         memberStore.setProfile({
-          nickname: '黑马先锋',
+          nickname: '胖达儿先锋',
         })
       "
       size="mini"
