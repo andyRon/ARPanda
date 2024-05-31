@@ -145,11 +145,44 @@ uni.setStorageSync()
 uni.getStorageSync()
 ```
 
+```json
+	persist: {
+      storage: {
+        getItem(key) {
+          return uni.getStorageSync(key)
+        },
+        setItem(key, val) {
+          uni.setStorageSync(key, val)
+        },
+      },
+    },
+```
+
+
+
+参数的具体配置，可以查看提示中的地址：
+
+![](images/image-20240531193343486.png)
+
+
+
+### 数据交互（请求工具）
+
+数据交互 -> 请求工具  -> 1️⃣拦截器， 2️⃣请求函数
+
+#### 请求和上传文件拦截器
+
+![](images/image-20240531194025307.png)
 
 
 
 
-### uni.request请求封装
+
+
+
+![](images/image-20240531200759154.png)
+
+
 
 
 
