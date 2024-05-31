@@ -1,6 +1,6 @@
 <template>
   <view class="content">
-    <image mode="test" class="logo" src="/static/logo.png" />
+    <image class="logo" src="/static/logo.png" mode="aspectFill"/>
     <view class="text-area">
       <text class="title">{{ title }}</text>
     </view>
@@ -9,7 +9,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-const title = ref('Hello andy')
+const title = ref('Hello AndyRon')
 </script>
 
 <style>

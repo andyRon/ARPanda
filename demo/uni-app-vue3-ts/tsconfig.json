@@ -9,12 +9,12 @@
     "lib": ["esnext", "dom"],
     "types": [
       "@dcloudio/types",
-      "@types/wechat-miniprogram",
-      "@uni-helper/uni-app-types"
+      "@uni-helper/uni-app-types",
+      "miniprogram-api-typings"
     ]
   },
-  // "vueCompilerOptions": {
-  //   "experimentalRuntimeMode": "runtime-uni-app"
-  // },
+  "vueCompilerOptions": {
+    "nativeTags": ["block", "component", "template", "slot"]
+  },
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"]
 }
