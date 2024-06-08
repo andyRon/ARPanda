@@ -308,6 +308,7 @@ VS Code和微信开发者工具关系：
 bugs
 
 - [ ] elint缩进
+- [ ] vscode ts代码类型提醒
 
 
 

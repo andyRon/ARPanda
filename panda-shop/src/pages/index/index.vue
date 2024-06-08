@@ -4,6 +4,7 @@ import CustomNavbar from './components/CustomNavbar.vue'
 
 <template>
   <CustomNavbar />
+  <PdSwiper />
   <view class="index">index</view>
 </template>
 

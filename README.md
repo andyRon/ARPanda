@@ -236,9 +236,44 @@ uni.getStorageSync()
 
 ### 通用轮播组件
 
+总共有两处广告位，分别位于【首页】和【商品分类页】。
+
+轮播图组件需要在首页和分类页使用，需要封装成通用组件。
+
+1. 准备组件
+2. 自动导入组件
+3. 添加组件类型声明
+
+![](images/image-20240609010007111.png)
+
+```json
+"easycom": {
+    // 是否开启自动扫描，自动扫描components目录等看是否有符合uniapp的组件
+    "autoscan": true,
+    // 以正则放到从依赖库中导入组件
+    "custom": {
+      // uni-ui 规则如下配置
+      "^uni-(.*)": "@dcloudio/uni-ui/lib/uni-$1/uni-$1.vue",
+      // 在通用组件文件夹中，查找以Pd开头的组件，自动导入(修改后需要重启服务器)
+      "^Pd(.*)": "@/components/Pd$1.vue"
+    }
+  }
+```
+
+```typescript
+import PdSwiper from './PdSwiper.vue'
+
+// 定义全局类型
+declare module '@vue/runtime-core' {
+  export interface GlobalComponents {
+    PdSwiper: typeof PdSwiper
+  }
+}
+```
 
 
-### 轮播图
+
+### 轮播图知识点
 
 
 
