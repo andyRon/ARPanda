@@ -4,6 +4,8 @@
     {
       "path": "pages/index/index",
       "style": {
+        "navigationStyle": "custom", // 改成自定义就隐藏默认导航栏
+        "navigationBarTextStyle": "white",
         "navigationBarTitleText": "首页"
       }
     },
