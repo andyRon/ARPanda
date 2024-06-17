@@ -297,6 +297,10 @@ VS Code和微信开发者工具关系：
 
 ![](images/image-20240531021218238.png)
 
+`pnpm dev:mp-weixin`
+
+
+
 #### 用VS Code开发练习
 
 使用 `VS Code` 编辑器写代码，实现 tabBar 案例 + 轮播图案例。

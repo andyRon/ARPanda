@@ -222,7 +222,7 @@ uni.getStorageSync()
 
 ![](images/image-20240608192648472.png)
 
-### 自定义导航栏
+### 2.1 自定义导航栏
 
 1. 准备组件
 2. 隐藏默认导航栏，修改文字颜色
@@ -234,7 +234,7 @@ uni.getStorageSync()
 
 
 
-### 通用轮播组件
+### 2.2 通用轮播组件
 
 总共有两处广告位，分别位于【首页】和【商品分类页】。
 
@@ -273,7 +273,73 @@ declare module '@vue/runtime-core' {
 
 
 
-### 轮播图知识点
+#### 轮播图指示点
+
+![](images/image-20240609011912736.png)
+
+知识点：
+1. `UniHelper` 提供事件类型
+2. `？`(可选链) 允许前面表达式为空值
+3. `！`(非空断言) 主观上排除掉空值情况
+
+#### 获取轮播图数据
+
+1. 封装获取轮播图数据API
+2. 页面初始化调用API
+
+```js
+// services/home.ts
+export const getHomeBannerAPI = (distributionSite = 1) => {
+  return http({
+    method: 'GET',
+    url: '/home/banner',
+    data: {
+    	distributionSite,
+    },
+  })
+}
+```
+
+```js
+// pages/index/index.vue
+const getHomeBannerData = async () => {
+  const res = await getHomeBannerAPI()
+  console.log(res)
+}
+onLoad(() => {
+  getHomeBannerData()
+})
+```
+
+
+
+#### 定义轮播图数据类型并渲染
+
+1. 定义轮播图数据类型  `types/home.d.ts`
+2. 指定类型并传值给子组件
+3. 渲染轮播图数据
+
+![](images/image-20240617000214597.png)
+
+![](images/image-20240617000436180.png)
+
+#### 轮播图总结
+
+![](images/image-20240617164601466.png)
+
+
+
+
+
+> bug  
+>
+> `[plugin:uni:mp-using-component] Unexpected token C in JSON at position 33`
+>
+> 解决方案：https://github.com/dcloudio/uni-app/issues/4952
+
+
+
+
 
 
 

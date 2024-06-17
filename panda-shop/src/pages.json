@@ -82,7 +82,7 @@
       // uni-ui 规则如下配置
       "^uni-(.*)": "@dcloudio/uni-ui/lib/uni-$1/uni-$1.vue",
       // 在通用组件文件夹中，查找以Pd开头的组件，自动导入(修改后需要重启服务器)
-      "^Pd(.*)": "@/components/Pd$1.vue"
+      "^Pd(.*)": "@/components/Pd$1.vue",
     }
   }
 }

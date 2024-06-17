@@ -18,10 +18,13 @@
       "miniprogram-api-typings",
       "@uni-helper/uni-app-types",
       "@uni-helper/uni-ui-types"
-    ]
+    ],
+    "moduleResolution": "node"
   },
+  // 校验 uni-app 组件类型
   "vueCompilerOptions": {
     // experimentalRuntimeMode 已废弃，现调整为 nativeTags，请升级 Volar 插件至最新版本
+    // nativeTags用于指定在编译过程中应该被视为原生标签的 HTML 元素。这些标签在编译过程中不会被替换或重写，而是保留为原生的 HTML 标签。
     "nativeTags": [
       "block",
       "component",
@@ -34,5 +37,5 @@
     "src/**/*.d.ts",
     "src/**/*.tsx",
     "src/**/*.vue"
-  ],
+  ]
 }
