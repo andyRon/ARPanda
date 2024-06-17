@@ -329,8 +329,6 @@ onLoad(() => {
 
 
 
-
-
 > bug  
 >
 > `[plugin:uni:mp-using-component] Unexpected token C in JSON at position 33`
@@ -341,9 +339,52 @@ onLoad(() => {
 
 
 
+### 2.3 前台分类组件
+
+![](images/image-20240617213730396.png)
+
+1. 准备组件（只有首页使用，存放到首页的 `components` ，取名 `CategoryPanel`）
+2. 导入并使用组件
+3. 设置首页底色为  `#F7F7F7`  
+
+小程序页面根标签是`<page>`，类似web种的body
 
 
-### 前台分类组件
+
+#### 获取前台分类数据
+
+1. 封装获取前台分类数据API
+2. 页面初始化调用API
+
+```ts
+// services/home.ts
+export const getHomeCategoryAPI = () => {
+  return http({
+    method: 'GET',
+    url: '/home/category/mutli',
+  })
+}
+```
+
+```typescript
+// pages/index/index.vue
+const getHomeCategoryData = async () => {
+  const res = await getHomeCategoryAPI()
+}
+onLoad(() => {
+	getHomeCategoryData()
+})
+```
+
+
+
+#### 前台分类数据类型并渲染
+
+1. 定义前台分类数据类型
+2. 指定类型并传值给子组件
+3. 渲染前台分类数据
+
+![](images/image-20240617221009228.png)
 
 
 
