@@ -468,11 +468,31 @@ p23 8:00 `flex`属性可以智能地分配滚动的高度
 
 ### 2.6 下拉刷新
 
+![](images/image-20240618120940084.png)
 
+![](images/image-20240618120953391.png)
 
+> ```typescript
+>   await getHomeBannerData()
+>   await getHomeCategoryData()
+>   await getHomeHotData()
+> ```
+>
+> ![](images/image-20240618122406064.png)
+>
+> 而`await Promise.all([getHomeBannerData(), getHomeCategoryData(), getHomeHotData()])` 可让三个请求同时加载，减少加载时间
+>
+> ![](images/image-20240618122258763.png)
 
+#### 下拉刷新时猜你喜欢数据获取
 
+猜你喜欢组件是组件内发起请求数据并维护的。
 
+下拉刷新时，猜你喜欢组件需要做：
+
+![](images/image-20240618123632489.png)
+
+![](images/image-20240618123148418.png)
 
 ### 2.7 骨架屏
 

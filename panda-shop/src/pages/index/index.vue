@@ -46,13 +46,39 @@ const onScrolltolower = () => {
   console.log('到底了')
   guessRef.value?.getMore()
 }
+
+// 下拉刷新状态
+const isTriggered = ref(false)
+// 自定义下拉刷新被触发
+const onRefresherrefresh = async () => {
+  // 开启动画
+  isTriggered.value = true
+  // 重置猜你喜欢数据
+  guessRef.value?.resetData()
+  // 加载数据
+  await Promise.all([
+    getHomeBannerData(),
+    getHomeCategoryData(),
+    getHomeHotData(),
+    guessRef.value?.getMore(), // 重置后再调用
+  ])
+  // 关闭动画
+  isTriggered.value = false
+}
 </script>
 
 <template>
   <!-- 自定义导航栏。不需要滚动，固定在上方 -->
   <CustomNavbar />
   <!-- 滚动容器 -->
-  <scroll-view class="scroll-view" @scrolltolower="onScrolltolower" scroll-y>
+  <scroll-view 
+    class="scroll-view" 
+    @scrolltolower="onScrolltolower"
+    scroll-y
+    refresher-enabled
+    @refresherrefresh="onRefresherrefresh"
+    :refresher-triggered="isTriggered"
+  >
     <!-- 自定义轮播图 -->
     <PdSwiper :list="bannerList" />
     <!-- 分类面板 -->
