@@ -1,7 +1,7 @@
 import type { PageParams, PageResult } from '@/types/global'
 import type { BannerItem, CategoryItem, GuessItem, HotItem } from '@/types/home'
 import { http } from '@/utils/http'
-
+// TODO 小程序请求总不管是GET还是POST，请求参数再data中
 /**
  * 首页-广告区域
  * @param distributionSite 广告区域展示位置 1 为首页（默认值）2 为商品分类页
@@ -44,4 +44,3 @@ export const getHomeGoodsGuessLikeAPI = (data?: PageParams) => {
     data,
   })
 }
-

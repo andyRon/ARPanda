@@ -5,7 +5,7 @@ import type { GuessItem } from '@/types/home';
 import { onMounted, ref } from 'vue';
 
 
-// 分页参数
+// 分页参数。Required把PageParams中属性可选都转为必选
 const pageParams: Required<PageParams> = {
   page: 1,
   pageSize: 10,
@@ -13,14 +13,16 @@ const pageParams: Required<PageParams> = {
 // 猜你喜欢的列表
 const guessList = ref<GuessItem[]>([])
 // 己结束标记
-const finish = ref(false)
+const finish = ref(false) // TODO
 // 获取猜你喜欢数据
 const getHomeGoodsGuessLikeData = async () => {
+  // 退出判断
   if (finish.value === true) {
     return uni.showToast({ icon: 'none', title: '没有更多数据...' })
   }
   const res = await getHomeGoodsGuessLikeAPI(pageParams)
   // 数组追加
+  // TODO ts中数组添加另一个数组中，需要`...` 扩展运算符（Spread Operator）
   guessList.value.push(...res.result.items)
   // 分页条件
   if (pageParams.page < res.result.pages) {
