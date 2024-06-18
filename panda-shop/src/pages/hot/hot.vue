@@ -31,7 +31,8 @@ const activeIndex = ref(0)
 // 获取热门推荐数据
 const getHotRecommendData = async () => {
   const res = await getHotRecommendAPI(currHot!.url, {
-    page: 30,
+    // 技巧：环境变量，开发环境，方便测试
+    page: import.meta.env.DEV ? 30 : 1,
     pageSize: 10,
   })
   bannerPicture.value = res.result.bannerPicture
