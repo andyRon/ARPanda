@@ -524,6 +524,71 @@ p23 8:00 `flex`属性可以智能地分配滚动的高度
 
 ## 3 推荐模块
 
+### 3.1 准备工作
+
+![](images/image-20240618210504498.png)
+
+![](images/image-20240618210608921.png)
+
+![](images/image-20240618211139467.png)
+
+### 3.2 获取热门推荐数据
+
+![](images/image-20240618211246230.png)
+
+封装通用接口 -> 初始化调用
+
+```typescript
+// src/services/hot.ts
+type HotParams = PageParams & { subType?: string }
+export const getHotRecommendAPI = (url: string, data?: HotParams) => {
+  return http({
+    method: 'GET',
+    url,
+    data,
+  })
+}
+```
+
+```typescript
+// src/pages/hot/hot.vue
+// 获取热门推荐数据
+const getHotRecommendData = async () => {
+  const res = await getHotRecommendAPI(currUrlMap!.url)
+  console.log(res)
+}
+// 页面加载
+onLoad(() => {
+	getHotRecommendData()
+})
+```
+
+### 3.3 定义类型
+
+
+
+类型复用
+
+![](images/image-20240618212947129.png)
+
+![](images/image-20240618212511803.png)
+
+### 3.4 渲染页面和Tab交互
+
+![](images/image-20240618215138186.png)
+
+### 分页加载
+
+
+
+### 分页条件
+
+
+
+
+
+
+
 
 
 ## 4 分类模块
