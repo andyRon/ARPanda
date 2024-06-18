@@ -313,6 +313,8 @@ bugs
 
 - [ ] elint缩进
 - [ ] vscode ts代码类型提醒
+- [ ] css flex属性 `flex: 1;`
+- [ ] easycom 组件不能自动导入  
 
 
 
