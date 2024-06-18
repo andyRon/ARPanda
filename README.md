@@ -496,7 +496,25 @@ p23 8:00 `flex`属性可以智能地分配滚动的高度
 
 ### 2.7 骨架屏
 
+骨架屏是页面的一个空白版本，通常会在页面完全渲染之前，通过一些灰色的区块大致勾勒出轮廓，待数据加载完成后，再替换成真实的内容。
 
+骨架屏作用是缓解用户等待时的焦虑情绪，属于用户体验优化方案。
+
+![](images/image-20240618123949844.png)
+
+微信开发者工具提供了自动生成骨架屏代码的能力。
+
+使用时需要把自动生成的 `xxx.skeleton.wxml` 和 `xxx.skeleton.wxss` 封装成 `vue` 组件。（拷贝到`PageSkeleton.vue`，删除不必要并修改）
+
+![](images/image-20240618124321023.png)
+
+![](images/image-20240618130816825.png)
+
+> bug 骨架屏不存在
+>
+> ```
+> Component is not found in path "pages/index/components/PageSkeleton" (using by "pages/index/index")(env: macOS,mp,1.06.2402040; lib: 2.25.3)
+> ```
 
 
 

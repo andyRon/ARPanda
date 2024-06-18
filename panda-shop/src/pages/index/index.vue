@@ -9,6 +9,7 @@ import CategoryPanel from './components/CategoryPanel.vue'
 import HotPanel from './components/HotPanel.vue'
 import type { PdGuessInstance } from '@/types/component'
 import PdGuess from '@/components/PdGuess.vue'
+import PageSkeleton from './components/PageSkeleton.vue'
 
 // 获取轮播图数据
 const bannerList = ref<BannerItem[]>([])
@@ -30,13 +31,6 @@ const getHomeHotData = async () => {
   const res = await getHomeHotAPI()
   homeHotList.value = res.result
 }
-
-// 页面加载【生命周期钩子】
-onLoad(() => {
-  getHomeBannerData()
-  getHomeCategoryData()
-  getHomeHotData()
-})
 
 // 获取猜你喜欢组件实例
 const guessRef = ref<PdGuessInstance>()
@@ -65,28 +59,41 @@ const onRefresherrefresh = async () => {
   // 关闭动画
   isTriggered.value = false
 }
+
+// 骨架屏加载标记
+const isLoading = ref(false)
+// 页面加载【生命周期钩子】
+onLoad(async () => {
+  isLoading.value = true
+  await Promise.all([getHomeBannerData(), getHomeCategoryData(), getHomeHotData()])
+  isLoading.value = false
+})
 </script>
 
 <template>
   <!-- 自定义导航栏。不需要滚动，固定在上方 -->
   <CustomNavbar />
   <!-- 滚动容器 -->
-  <scroll-view 
-    class="scroll-view" 
+  <scroll-view
+    class="scroll-view"
     @scrolltolower="onScrolltolower"
     scroll-y
     refresher-enabled
     @refresherrefresh="onRefresherrefresh"
     :refresher-triggered="isTriggered"
   >
-    <!-- 自定义轮播图 -->
-    <PdSwiper :list="bannerList" />
-    <!-- 分类面板 -->
-    <CategoryPanel :list="categoryList" />
-    <!-- 热门推荐 -->
-    <HotPanel :list="homeHotList" />
-    <!-- 猜你喜欢 -->
-    <PdGuess ref="guessRef" />
+    <PageSkeleton v-if="isLoading"/>
+    <template v-else>
+      <!-- 自定义轮播图 -->
+      <PdSwiper :list="bannerList" />
+      <!-- 分类面板 -->
+      <CategoryPanel :list="categoryList" />
+      <!-- 热门推荐 -->
+      <HotPanel :list="homeHotList" />
+      <!-- 猜你喜欢 -->
+      <PdGuess ref="guessRef" />
+    </template>
+    
   </scroll-view>
 </template>
 
