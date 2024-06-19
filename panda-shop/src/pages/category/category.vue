@@ -20,7 +20,7 @@ const categoryList = ref<CategoryTopItem[]>([])
 const getCategoryTopData = async() => {
   const res = await getCategoryTopAPI()
   categoryList.value = res.result
-  console.log(categoryList.value)
+  // console.log(categoryList.value)
 }
 // 高亮下标
 const activeIndex = ref(0)

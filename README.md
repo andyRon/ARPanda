@@ -631,9 +631,57 @@ onLoad(() => {
 
 ## 5 详情模块
 
+### 准备工作
+
+![](images/image-20240619155205525.png)
+
+```vue
+<view class="toolbar" :style="{ paddingBottom: safeAreaInsets?.bottom + 'px' }">
+```
+
+为了防止现在全面屏顶部小黑条挡住UI
+
+
+
+### 页面渲染
+
+![](images/image-20240619155716065.png)
+
+### 轮播图交互
+
+![](images/image-20240619160432301.png)
+
+
+
+### 弹出层
+
+[uni-popup 弹出层 | uni-app官网 (dcloud.net.cn)](https://uniapp.dcloud.net.cn/component/uniui/uni-popup.html)
+
+![](images/image-20240619161348330.png)
+
+
+
+### 弹出层交互
+
+![](images/image-20240619162521090.png)
+
+
+
+> 🔖bug
+>
+> - [ ] 弹出层关闭
+
+
+
+### 骨架屏
+
+🔖
+
 
 
 ## 6 登录模块
+
+
 
 
 
