@@ -681,6 +681,85 @@ onLoad(() => {
 
 ## 6 登录模块
 
+### 小程序快捷登录
+
+#### 介绍
+
+微信小程序的**开放能力**，允许开发者获取微信用户的基本信息（昵称、性别、手机号码等），开发者常用来实现注册/登录的功能。
+
+常见登录/注册方式：
+
+1. 用户名/手机号 + 密码
+2. 手机号 + 验证码
+3. 授权登录
+
+实际开发过程中常常需要实现以上的一种或多种方式，我们的项目主要实现**授权登录**（小程序快捷登录）。
+
+**微信授权登录**就是用户在使用小程序时，其实已登录微信，其本质上就是：**微信授权给小程序读取微信用户信息**。
+
+![微信授权登录](images/image-20240619163142301.png)
+
+**传统登录方式**，一般是通过输入密码或者手机验证码实现登录。
+
+![传统登录方式](images/image-20240619163231276.png)
+
+#### 实现
+
+![](images/image-20240619165047395.png)
+
+![](images/iShot_2024-06-19_16.51.57.png)
+
+官方文档
+
+[获取登录凭证(code)](https://developers.weixin.qq.com/miniprogram/dev/api/open-api/login/wx.login.html)
+
+[获取手机号](https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/getPhoneNumber.html)
+
+![](images/image-20240619165452893.png)
+
+> **注意**: 获取手机号功能针对**非个人开发者，且完成认证**的小程序开放。
+>
+> **工作场景**：使用**企业小程序appid** ，且把微信号添加到开发者列表中。
+
+
+
+### 模拟快捷登录
+
+```
+封装模拟登录  ->  调用模拟登录
+```
+
+![](images/image-20240619165854918.png)
+
+```typescript
+/**
+ * 小程序登录_内测版(模拟快捷登录)
+ * @param phoneNumber 模拟手机号
+ */
+export const postLoginWxMinSimpleAPI = (phoneNumber: string) => {
+  return http({
+    method: 'POST',
+    url: '/login/wxMin/simple',
+    data: {
+      phoneNumber,
+    },
+  })
+}
+```
+
+```typescript
+// 模块手机快捷登录
+const onGetphonenumberSimple = async () => {
+  const res = await postLoginWxMinSimpleAPI('13123456789')
+  console.log(res)
+  uni.showToast({ icon: 'success', title: '登录成功' })
+}
+```
+
+
+
+### 保存登录会员信息
+
 
 
 
