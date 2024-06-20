@@ -869,6 +869,12 @@ const { guessRef, onScrolltolower } = useGuessList()
 
 
 
+### 修改用户昵称
+
+p57 
+
+![](images/image-20240620121140938.png)
+
 
 
 ## 8 地址管理

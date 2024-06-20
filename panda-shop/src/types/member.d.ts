@@ -32,7 +32,10 @@ export type ProfileDetail = BaseProfile & {
 /** 性别 */
 export type Gender = '女' | '男'
 
-/** 个人信息 修改请求体参数 */
+/**
+ * 个人信息 修改请求体参数
+ * 通过Pick在ProfileDetail选取
+ **/
 export type ProfileParams = Pick<
   ProfileDetail,
   'nickname' | 'gender' | 'birthday' | 'profession'
