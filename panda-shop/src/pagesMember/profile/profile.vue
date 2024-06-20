@@ -1,11 +1,15 @@
 <script setup lang="ts">
 import { getMemberProfileAPI } from '@/services/profile';
-import type { ProfileDetail } from '@/types/profile';
+import { useMemberStore } from '@/stores';
+import type { ProfileDetail } from '@/types/member';
 import { onLoad } from '@dcloudio/uni-app';
 import { ref } from 'vue';
 
 // 获取屏幕边界到安全区域距离
 const { safeAreaInsets } = uni.getSystemInfoSync()
+
+const memberStore = useMemberStore()
+
 // 获取用户信息
 const profile = ref<ProfileDetail>()
 const getMemberProfileData = async () => {
@@ -17,6 +21,35 @@ const getMemberProfileData = async () => {
 onLoad(() => {
   getMemberProfileData()
 })
+
+// 修改头像
+const onAvatarChange = () => {
+  uni.chooseMedia({
+    count: 1,
+    mediaType: ['image'],
+    success: (res) => {
+      // 获取本地路径
+      const { tempFilePath } = res.tempFiles[0]
+      // 图片上传
+      uni.uploadFile({
+        url: '/member/profile/avatar',
+        name: 'file',
+        filePath: tempFilePath,
+        success: (res) => {
+          console.log(res)
+          if (res.statusCode === 200) {
+            const { avatar } = JSON.parse(res.data).result
+            // 当前页面更新头像
+            profile.value!.avatar = avatar
+            uni.showToast({ icon: 'success', title: '更新成功' })
+          } else {
+            uni.showToast({ icon: 'error', title: '出现错误' })
+          }
+        },
+      })
+    },
+  })
+}
 </script>
 
 <template>
@@ -28,7 +61,7 @@ onLoad(() => {
     </view>
     <!-- 头像 -->
     <view class="avatar">
-      <view class="avatar-content">
+      <view class="avatar-content" @tap="onAvatarChange">
         <image class="image" :src="profile?.avatar" mode="aspectFill" />
         <text class="text">点击修改头像</text>
       </view>
