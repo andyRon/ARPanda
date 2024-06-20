@@ -953,6 +953,23 @@ picker事件 -> 获取日期 -> 提交更新
 
 ![](images/image-20240620142334523.png)
 
+### 表单校验
+
+[uni-form组件文档](https://uniapp.dcloud.net.cn/component/uniui/uni-forms.html)
+
+操作步骤:
+
+1. 定义校验规则
+2. 修改表单结构
+3. 绑定校验规则
+4. 提交时校验表单
+
+![](images/image-20240620144237042.png)
+
+### 删除地址
+
+
+
 ## 9 SKU模块
 
 
