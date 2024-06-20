@@ -10,6 +10,7 @@ import HotPanel from './components/HotPanel.vue'
 import type { PdGuessInstance } from '@/types/component'
 import PdGuess from '@/components/PdGuess.vue'
 import PageSkeleton from './components/PageSkeleton.vue'
+import { useGuessList } from '@/composables'
 
 // 获取轮播图数据
 const bannerList = ref<BannerItem[]>([])
@@ -32,14 +33,8 @@ const getHomeHotData = async () => {
   homeHotList.value = res.result
 }
 
-// 获取猜你喜欢组件实例
-const guessRef = ref<PdGuessInstance>()
-
-// 滚动触底事件
-const onScrolltolower = () => {
-  console.log('到底了')
-  guessRef.value?.getMore()
-}
+// 调用猜你喜欢组合式函数
+const { guessRef, onScrolltolower } = useGuessList()
 
 // 下拉刷新状态
 const isTriggered = ref(false)

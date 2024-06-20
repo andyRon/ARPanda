@@ -762,9 +762,58 @@ const onGetphonenumberSimple = async () => {
 
 ![](images/image-20240619172007565.png)
 
-
-
 ## 7 用户模块
+
+中户（会员）中心
+
+### 会员信息展示
+
+主要实现两部分业务：
+
+1. 从 Store 中获取，渲染当前登录会员的昵称和头像。
+2. 猜你喜欢分页加载，可封装成**组合式函数**实现复用逻辑。
+
+![](images/image-20240620074418333.png)
+
+```
+静态结构  ->  自定义导航  ->  渲染会员信息
+```
+
+
+
+### 猜你喜欢分页加载
+
+![](images/image-20240620090528829.png)
+
+[组合式函数 | Vue.js (vuejs.org)](https://cn.vuejs.org/guide/reusability/composables.html)（Composables）一个利用 Vue 的组合式 API 来封装和复用**有状态逻辑**的函数。
+
+```typescript
+// src/composables/index.ts
+import type { PdGuessInstance } from "@/types/component"
+import { ref } from "vue"
+
+export const useGuessList = () => {
+  // 获取猜你喜欢组件实例
+  const guessRef = ref<PdGuessInstance>()
+  // 滚动触底获取分页数据
+  const onScrolltolower = () => {
+    guessRef.value?.getMore()
+  }
+  // 返回封装的ref和函数
+  return { guessRef, onScrolltolower }
+}
+```
+
+```typescript
+// 调用猜你喜欢组合式函数
+const { guessRef, onScrolltolower } = useGuessList()
+
+<scroll-view class="viewport" scroll-y enable-back-to-top @scrolltolower="onScrolltolower">
+
+<PdGuess ref="guessRef" />
+```
+
+
 
 
 
