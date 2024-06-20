@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { postMemberAddressAPI } from '@/services/address';
+import { getMemberAddressByIdAPI, postMemberAddressAPI, putMemberAddressByIdAPI } from '@/services/address';
+import { onLoad } from '@dcloudio/uni-app';
 import { ref } from 'vue'
 
 const query = defineProps<{
@@ -7,7 +8,6 @@ const query = defineProps<{
 }>()
 // 动态设置标题
 uni.setNavigationBarTitle({ title: query.id ? '修改地址' : '新建地址' })
-
 // 表单数据
 const form = ref({
   receiver: '', // 收货人
@@ -18,6 +18,20 @@ const form = ref({
   countyCode: '', // 区/县编码(后端参数)
   address: '', // 详细地址
   isDefault: 0, // 默认地址，1为是，0为否
+})
+
+// 获取收货地址详情数据
+const getMemberAddressByIdData = async () => {
+  if (query.id) {
+    // 发送请求
+    const res = await getMemberAddressByIdAPI(query.id)
+    // 把数据合并到表单中
+    Object.assign(form.value, res.result)
+  }
+}
+// 页面加载
+onLoad(() => {
+  getMemberAddressByIdData()
 })
 
 // 修改地区
@@ -33,16 +47,31 @@ const onRegionChange: UniHelper.RegionPickerOnChange = (ev) => {
 const onSwitchChange: UniHelper.SwitchOnChange = (ev) => {
   form.value.isDefault = ev.detail.value ? 1 : 0
 }
+
+// 表单组件实例
+const formRef = ref<UniHelper.UniFormsInstance>()
 // 提交表单
 const onSubmit = async () => {
-  // 添加收货地址
-  await postMemberAddressAPI(form.value)
-  // 成功提示
-  uni.showToast({ title: '添加成功' })
-  // 返回上一页
-  setTimeout(() => {
-    uni.navigateBack()
-  }, 400)
+  try {
+    // 表单校验
+    await formRef.value?.validate?.() // TODO
+    if (query.id) {
+      // 修改收货地址
+      await putMemberAddressByIdAPI(query.id, form.value)
+    } else {
+      // 添加收货地址
+      await postMemberAddressAPI(form.value)
+    }
+
+    // 成功提示
+    uni.showToast({ icon: 'success', title: query.id ? '修改成功' : '添加成功' })
+    // 返回上一页
+    setTimeout(() => {
+      uni.navigateBack()
+    }, 400)
+  } catch (error) {
+    uni.showToast({ icon: 'error', title: '请填写完整信息' })
+  }
 }
 </script>
 

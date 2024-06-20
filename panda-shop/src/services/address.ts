@@ -24,7 +24,7 @@ export const getMemberAddressAPI = () => {
 }
 
 /**
- * 获取收货地址详情
+ * 根据id获取收货地址详情
  * @param id 地址id(路径参数)
  */
 export const getMemberAddressByIdAPI = (id: string) => {
