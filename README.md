@@ -833,6 +833,10 @@ const { guessRef, onScrolltolower } = useGuessList()
 
 > 经验：分包一般是按照项目的==业务模块划分==，如会员模块分包（例如上面的`pagesMember`），订单模块分包等。
 
+### 退出登录
+
+![](images/image-20240620104205880.png)
+
 
 
 ## 8 地址管理
