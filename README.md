@@ -781,11 +781,13 @@ const onGetphonenumberSimple = async () => {
 
 
 
-### 猜你喜欢分页加载
+### 猜你喜欢组合式函数
 
 ![](images/image-20240620090528829.png)
 
 [组合式函数 | Vue.js (vuejs.org)](https://cn.vuejs.org/guide/reusability/composables.html)（Composables）一个利用 Vue 的组合式 API 来封装和复用**有状态逻辑**的函数。
+
+猜你喜欢组合式函数实现分页加载
 
 ```typescript
 // src/composables/index.ts
@@ -813,7 +815,23 @@ const { guessRef, onScrolltolower } = useGuessList()
 <PdGuess ref="guessRef" />
 ```
 
+### 设置页分包和预下载
 
+**小程序分包**：将小程序的**代码分割成多个部分**，分别打包成多个小程序包，==减少==小程序的==加载时间==，提高用户体验。
+
+**分包预下载**：在进入小程序某个页面时，由框架**自动预下载**可能需要的分包，==提升==进入后续分包页面时的==启动速度==。
+
+![](images/image-20240620094351201.png)
+
+[分包预下载规则](https://uniapp.dcloud.net.cn/collocation/pages.html#preloadrule)
+
+为了防止干扰，新建文件夹`pagesMember`来存放分包
+
+![](images/image-20240620092857369.png)
+
+![](images/image-20240620094118225.png)
+
+> 经验：分包一般是按照项目的==业务模块划分==，如会员模块分包（例如上面的`pagesMember`），订单模块分包等。
 
 
 

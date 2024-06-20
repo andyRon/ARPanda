@@ -98,5 +98,30 @@
 			// 在通用组件文件夹中，查找以Pd开头的组件，自动导入(修改后需要重启服务器)
 			"^Pd(.*)": "@/components/Pd$1.vue"
 		}
+	},
+	// 分包加载规则
+	"subPackages": [
+		{
+			// 子包的根目录
+			"root": "pagesMember",
+			// 页面路径和窗口表现
+			"pages": [
+				{
+					"path": "settings/settings",
+					"style": {
+						"navigationBarTitleText": "设置"
+					}
+				}
+			]
+		}
+	],
+	// 分包预下载规则
+	"preloadRule": {
+		"pages/my/my": { // 在我的页面时，提前（所有网络情况）下载设置页面
+			"network": "all",
+			"packages": [
+				"pagesMember"
+			]
+		}
 	}
 }
