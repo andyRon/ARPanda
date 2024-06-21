@@ -45,11 +45,30 @@ const onRegionChange: UniHelper.RegionPickerOnChange = (ev) => {
   console.log(form)
   // 后端参数
   const [provinceCode, cityCode, countyCode] = ev.detail.code!
-  Object.assign(form.value, { provinceCode, cityCode, countyCode })
+  Object.assign(form.value, { provinceCode, cityCode, countyCode }) // 对象合并 // TODO
 }
 // 修改默认地址
 const onSwitchChange: UniHelper.SwitchOnChange = (ev) => {
   form.value.isDefault = ev.detail.value ? 1 : 0
+}
+
+// 表单验证规则
+const rules: UniHelper.UniFormsRules = {
+  receiver: {
+    rules: [{ required: true, errorMessage: '请输入收货人姓名' }],
+  },
+  contact: {
+    rules: [
+      { required: true, errorMessage: '请输入联系方式' },
+      { pattern: /^1[3-9]\d{9}$/, errorMessage: '手机号格式不正确' },
+    ],
+  },
+  fullLocation: {
+    rules: [{ required: true, errorMessage: '请选择所在地区' }],
+  },
+  address: {
+    rules: [{ required: true, errorMessage: '请选择详细地址' }],
+  },
 }
 
 // 表单组件实例，用于调用表单方法
@@ -76,25 +95,6 @@ const onSubmit = async () => {
   } catch (error) {
     uni.showToast({ icon: 'error', title: '请填写完整信息' })
   }
-}
-
-// 表单验证规则
-const rules: UniHelper.UniFormsRules = {
-  receiver: {
-    rules: [{ required: true, errorMessage: '请输入收货人姓名' }],
-  },
-  contact: {
-    rules: [
-      { required: true, errorMessage: '请输入联系方式' },
-      { pattern: /^1[3-9]\d{9}$/, errorMessage: '手机号格式不正确' },
-    ],
-  },
-  fullLocation: {
-    rules: [{ required: true, errorMessage: '请选择所在地区' }],
-  },
-  address: {
-    rules: [{ required: true, errorMessage: '请选择详细地址' }],
-  },
 }
 </script>
 
@@ -123,6 +123,7 @@ const rules: UniHelper.UniFormsRules = {
       </uni-forms-item>
       <view class="form-item">
         <label class="label">设为默认地址</label>
+        <!-- switch不支持v-model双向绑定，使用事件@change // TODO-->
         <switch class="switch" color="#27ba9b" :checked="form.isDefault === 1" @change="onSwitchChange" />
       </view>
     </uni-forms>

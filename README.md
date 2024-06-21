@@ -968,7 +968,28 @@ picker事件 -> 获取日期 -> 提交更新
 
 ### 删除地址
 
+[uni-swipe-action组件文档](https://uniapp.dcloud.net.cn/component/uniui/uni-swipe-action.html)
 
+侧滑组件用法:
+
+```vue
+<template>
+  <!-- 滑动操作分区 -->
+  <uni-swipe-action>
+    <!-- 滑动操作项 -->
+    <uni-swipe-action-item>
+      <!-- 默认插槽 -->
+      <view>内容</view>
+      <!-- 右侧插槽 -->
+      <template #right>
+        <button class="delete-button">删除</button>
+      </template>
+    </uni-swipe-action-item>
+  </uni-swipe-action>
+</template>
+```
+
+![](images/image-20240620145815491.png)
 
 ## 9 SKU模块
 
