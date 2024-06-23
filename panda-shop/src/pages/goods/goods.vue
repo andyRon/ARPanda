@@ -123,7 +123,7 @@ const onAddCart = async (ev: SkuPopupEvent) => {
     @add-cart="onAddCart"
   ></vk-data-goods-sku-popup>
   <!-- 弹窗测试 -->
-  <button @tap="isShowSku = true">打开 SKU 弹窗</button>
+  <!-- <button @tap="isShowSku = true">打开 SKU 弹窗</button> -->
 
   <scroll-view scroll-y class="viewport">
     <!-- 基本信息 -->
