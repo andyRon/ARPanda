@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { getMemberOrderPreAPI } from '@/services/order'
+import { useAddressStore } from '@/stores/modules/address'
 import type { OrderPreResult } from '@/types/order'
 import { onLoad } from '@dcloudio/uni-app'
 import { computed, ref } from 'vue'
@@ -33,6 +34,19 @@ const getMemberOrderPreData = async () => {
 onLoad(() => {
   getMemberOrderPreData()
 })
+
+// 页面参数
+const query = defineProps<{
+  skuId?: string
+  count?: string
+  orderId?: string
+}>()
+
+const addressStore = useAddressStore()
+// 收货地址
+const selectedAddress = computed(() => {
+  return addressStore.selectedAddress || orderPre.value?.userAddresses.find((v) => v.isDefault)
+})
 </script>
 
 <template>
@@ -55,6 +69,8 @@ onLoad(() => {
       url="/pagesMember/address/address?from=order"
     >
       <view class="address"> 请选择收货地址 </view>
+      <view class="user"> {{ selectedAddress?.receiver }} {{ selectedAddress?.contact }}</view>
+      <view class="address"> {{ selectedAddress?.fullLocation }} {{ selectedAddress?.address }}</view>
       <text class="icon icon-right"></text>
     </navigator>
 

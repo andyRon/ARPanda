@@ -1,3 +1,4 @@
+import type { OrderPreResult } from "@/types/order"
 import { http } from "@/utils/http"
 
 /**
