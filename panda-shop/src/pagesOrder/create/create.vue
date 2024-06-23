@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { getMemberOrderPreAPI } from '@/services/order'
+import { getMemberOrderPreAPI, getMemberOrderPreNowAPI } from '@/services/order'
 import { useAddressStore } from '@/stores/modules/address'
 import type { OrderPreResult } from '@/types/order'
 import { onLoad } from '@dcloudio/uni-app'
@@ -27,8 +27,18 @@ const onChangeDelivery: UniHelper.SelectorPickerOnChange = (ev) => {
 // 获取预付订单
 const orderPre = ref<OrderPreResult>()
 const getMemberOrderPreData = async () => {
-  const res = await getMemberOrderPreAPI()
-  orderPre.value = res.result
+  if (query.skuId && query.count) {
+    // 立即购买
+    const res = await getMemberOrderPreNowAPI({
+      count: query.count,
+      skuId: query.skuId,
+    })
+    orderPre.value = res.result
+  } else {
+    // 预付订单
+    const res = await getMemberOrderPreAPI()
+    orderPre.value = res.result
+  }
 }
 
 onLoad(() => {
@@ -47,6 +57,7 @@ const addressStore = useAddressStore()
 const selectedAddress = computed(() => {
   return addressStore.selectedAddress || orderPre.value?.userAddresses.find((v) => v.isDefault)
 })
+
 </script>
 
 <template>
