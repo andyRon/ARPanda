@@ -84,7 +84,10 @@ const onPayment = () => {
     })
     return
   }
-  uni.showToast({ title: '等待完善' })
+  // uni.showToast({ title: '等待完善' })
+  uni.navigateTo({
+    url: '/pagesOrder/create/create',
+  })
 }
 </script>
 
