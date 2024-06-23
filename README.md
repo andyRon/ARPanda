@@ -1111,9 +1111,32 @@ SKU常见于电商领域，对于前端工程师而言，更多关注 [SKU算法
 
 ![](images/image-20240623192227834.png)
 
+### 自定义导航栏交互🔖 
 
+1. 导航栏左上角按钮：[获取当前页面栈](https://developers.weixin.qq.com/miniprogram/dev/reference/api/getCurrentPages.html)，如果不能返回上一页，按钮变成返回首页。
+2. 导航栏动画效果：[滚动驱动的动画](https://developers.weixin.qq.com/miniprogram/dev/framework/view/animation.html#%E6%BB%9A%E5%8A%A8%E9%A9%B1%E5%8A%A8%E7%9A%84%E5%8A%A8%E7%94%BB)，根据滚动位置而不断改变动画的进度。
 
+> 滚动驱动的动画目前**仅支持微信小程序端**，暂不支持 H5 端、App 端，多端兼容时添加条件编译。
 
+![](images/order_picture_2.gif)
+
+![](images/image-20240623193754363.png)
+
+> 版本升级
+>
+> - uni-app 不支持 `animate` 类型。
+> - 原生微信小程序 支持 [animate 类型](https://github.com/wechat-miniprogram/api-typings/blob/master/types/wx/lib.wx.component.d.ts#L241-L246) 。
+> - 当前需求可基于 原生微信小程序 的 [Page 实例类型](https://github.com/wechat-miniprogram/api-typings/blob/master/types/wx/lib.wx.page.d.ts#L161) 扩展 uni-app 的 Page 实例，参考代码 👇
+>
+> ```ts {2,3}
+> // 基于小程序的 Page 实例类型扩展 uni-app 的 Page
+> type PageInstance = Page.PageInstance & WechatMiniprogram.Page.InstanceMethods<any>
+> const pageInstance = pages.at(-1) as PageInstance
+> 
+> const pageInstance = pages.at(-1) as any // [!code --]
+> ```
+>
+> 
 
 
 
