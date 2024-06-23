@@ -3,7 +3,7 @@ import { useGuessList } from '@/composables'
 import { OrderState, orderStateList } from '@/services/constants'
 import { deleteMemberOrderAPI, getMemberOrderByIdAPI, getMemberOrderCancelByIdAPI, getMemberOrderConsignmentByIdAPI, getMemberOrderLogisticsByIdAPI, putMemberOrderReceiptByIdAPI } from '@/services/order'
 import { getPayMockAPI, getPayWxPayMiniPayAPI } from '@/services/py'
-import { OrderResult, type LogisticItem } from '@/types/order'
+import type { OrderResult, LogisticItem } from '@/types/order'
 import { onLoad, onReady } from '@dcloudio/uni-app'
 import { ref } from 'vue'
 
