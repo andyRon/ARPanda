@@ -7,7 +7,9 @@
 
 
 
-胖达儿包含从首页浏览商品，商品详情，微信登录，加入购物车，提交订单，微信支付，订单管理等功能。
+胖达儿包含首页浏览商品，商品详情，微信登录，加入购物车，提交订单，微信支付，订单管理等功能。
+
+![](images/image-20240626021133665.png)
 
 ## 1 基础架构
 
@@ -24,8 +26,6 @@ pnpm install   ->   pnpm dev:mp-weixin    ->   导入微信开发者工具
 
 
 ### 工程结构解析
-
-
 
 ```
 ├── .husky                     # Git Hooks
@@ -67,10 +67,6 @@ pnpm install   ->   pnpm dev:mp-weixin    ->   导入微信开发者工具
 └── vite.config.ts             # vite 配置
 ```
 
-
-
-
-
 ### 引入uni-ui组件库
 
 [uni-ui 介绍 | uni-app官网](https://uniapp.dcloud.net.cn/component/uniui/uni-ui.html)
@@ -97,8 +93,6 @@ pnpm i @dcloudio/uni-ui
     }
   }
 ```
-
-
 
 
 
@@ -158,8 +152,6 @@ uni.getStorageSync()
     },
 ```
 
-
-
 参数的具体配置，可以查看提示中的地址：
 
 ![](images/image-20240531193343486.png)
@@ -176,10 +168,6 @@ uni.getStorageSync()
 
 
 
-
-
-
-
 ![](images/image-20240531200759154.png)
 
 
@@ -189,8 +177,6 @@ uni.getStorageSync()
 目的是为了更加方便的发请求。借鉴aioxs
 
 ![](images/image-20240531202938561.png)
-
-
 
 ##### 请求成功提取数据和设置类型
 
@@ -207,8 +193,6 @@ uni.getStorageSync()
 ![](images/image-20240531205320587.png)
 
 ![](images/image-20240531205452363.png)
-
-
 
 
 
@@ -229,8 +213,6 @@ uni.getStorageSync()
 3. 样式适配-> ==安全区域==
 
 ![](images/image-20240608204354347.png)
-
-
 
 
 
@@ -1001,7 +983,7 @@ SKU概念：**==存货单位（Stock Keeping Unit）==**，**库存**管理的�
 
 SKU常见于电商领域，对于前端工程师而言，更多关注 [SKU算法](https://juejin.cn/post/7002746459456176158)，基于后端的SKU数据**渲染页面**并**实现交互**。
 
-![image-20240621103953776](images/image-20240621103953776.png)
+![](images/image-20240621103953776.png)
 
 
 
@@ -1244,4 +1226,28 @@ SKU常见于电商领域，对于前端工程师而言，更多关注 [SKU算法
 
 
 
-## 项目打包
+## 12 项目打包
+
+### 微信小程序端发布上线
+
+
+
+ ![](images/image-20240626033303584.png)
+
+[miniprogram-ci](https://developers.weixin.qq.com/miniprogram/dev/devtools/ci.html) 
+
+
+
+### 条件编译和网页端打包
+
+常见问题：按照 uni-app 规范开发可保证**多平台兼容**，但每个平台有自己的一些特性，该如何处理？
+
+注意事项：**网页端不支持微信平台授权登录等功能**，可通过条件编译，让代码按条件编译到不同平台。
+
+
+
+编译成网页端的命令是： `pnpm dev:h5`
+
+
+
+条件编译语法：通过特殊注释，以 `#ifdef` 或 `#ifndef` 加 `平台名称` 开头，以 `#endif` 结尾。

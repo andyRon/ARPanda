@@ -88,7 +88,6 @@ onLoad(async () => {
       <!-- 猜你喜欢 -->
       <PdGuess ref="guessRef" />
     </template>
-    
   </scroll-view>
 </template>
 
@@ -100,6 +99,6 @@ page {
   flex-direction: column;
 }
 .scroll-view {
-  // flex: 1; // 占据剩下的高度
+  flex: 1; // 占据剩下的高度
 }
 </style>

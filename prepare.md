@@ -24,10 +24,6 @@ https://gitee.com/Megasu/uniapp-shop-vue3-ts/
 
 
 
-
-
-day1
-
 ### 创建uni-app项目
 
 两种方式：
@@ -147,8 +143,6 @@ npx degit dcloudio/uni-preset-vue#vite-ts 项目名称
 # 通过 git 从 gitee 克隆下载 (👉备用地址)
 git clone -b vite-ts https://gitee.com/dcloud/uni-preset-vue.git
 ```
-
-
 
 创建项目：
 
@@ -308,6 +302,8 @@ VS Code和微信开发者工具关系：
 
 
 
+
+## 开发记录
 
 bugs
 
