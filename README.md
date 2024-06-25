@@ -1244,10 +1244,36 @@ SKU常见于电商领域，对于前端工程师而言，更多关注 [SKU算法
 
 注意事项：**网页端不支持微信平台授权登录等功能**，可通过条件编译，让代码按条件编译到不同平台。
 
-
-
-编译成网页端的命令是： `pnpm dev:h5`
-
-
-
 条件编译语法：通过特殊注释，以 `#ifdef` 或 `#ifndef` 加 `平台名称` 开头，以 `#endif` 结尾。
+
+```vue
+			<!-- 网页端表单登录 -->
+      <!-- #ifdef H5 -->
+      <input class="input" type="text" placeholder="请输入用户名/手机号码" />
+      <input class="input" type="text" password placeholder="请输入密码" />
+      <button class="button phone">登录</button>
+      <!-- #endif -->
+
+      <!-- 小程序端授权登录 -->
+      <!-- #ifdef MP-WEIXIN -->
+      <button class="button phone" open-type="getPhoneNumber" @getphonenumber="onGetphonenumber">
+        <text class="icon icon-phone"></text>
+        手机号快捷登录
+      </button>
+      <!-- #endif -->
+```
+
+
+
+编译成网页端的命令是： 
+
+`pnpm dev:h5`  
+
+`pnpm build:h5`  会生成
+
+修改`manifest.json`添加网页特有配置。
+
+### Andriod端
+
+
+
