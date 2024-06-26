@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import List from '@/pagesOrder/list/list.vue';
 import type { CategoryItem } from '@/types/home'
 
 defineProps<{
@@ -11,9 +12,10 @@ defineProps<{
     <navigator
       class="category-item"
       hover-class="none"
-      url="/pages/index/index"
+      :url="`/pages/category/category?id=${item.id}`"
       v-for="item in list"
       :key="item.id"
+      open-type="switchTab"
     >
       <image class="icon" :src="item.icon"></image>
       <text class="text">{{ item.name }}</text>

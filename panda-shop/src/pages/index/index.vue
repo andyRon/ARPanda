@@ -77,7 +77,7 @@ onLoad(async () => {
     @refresherrefresh="onRefresherrefresh"
     :refresher-triggered="isTriggered"
   >
-    <PageSkeleton v-if="isLoading"/>
+    <PageSkeleton v-if="isLoading" />
     <template v-else>
       <!-- 自定义轮播图 -->
       <PdSwiper :list="bannerList" />

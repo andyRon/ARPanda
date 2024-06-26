@@ -293,8 +293,6 @@ onLoad(() => {
 })
 ```
 
-
-
 #### 定义轮播图数据类型并渲染
 
 1. 定义轮播图数据类型  `types/home.d.ts`
@@ -316,8 +314,6 @@ onLoad(() => {
 > `[plugin:uni:mp-using-component] Unexpected token C in JSON at position 33`
 >
 > 解决方案：https://github.com/dcloudio/uni-app/issues/4952
-
-
 
 
 
@@ -1274,6 +1270,24 @@ SKU常见于电商领域，对于前端工程师而言，更多关注 [SKU算法
 修改`manifest.json`添加网页特有配置。
 
 ### Andriod端
+
+#### 预览和调式
+
+![](images/image-20240626052525153.png)
+
+#### 云打包
+
+
+
+### iOS端
+
+
+
+## 13 跨端兼容
+
+
+
+## 14 uniCloud云开发
 
 
 

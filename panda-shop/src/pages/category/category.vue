@@ -8,6 +8,11 @@ import type { CategoryTopItem } from '@/types/category';
 import { getCategoryTopAPI } from '@/services/category';
 import PageSkeleton from './components/PageSkeleton.vue';
 
+const cid = defineProps<{
+  id: number
+}>()
+console.log(cid)
+
 // 轮播图数据
 const bannerList = ref<BannerItem[]>([])
 const getBannerData = async () => {
@@ -17,7 +22,7 @@ const getBannerData = async () => {
 
 // 商品分类数据
 const categoryList = ref<CategoryTopItem[]>([])
-const getCategoryTopData = async() => {
+const getCategoryTopData = async () => {
   const res = await getCategoryTopAPI()
   categoryList.value = res.result
   // console.log(categoryList.value)
@@ -25,13 +30,13 @@ const getCategoryTopData = async() => {
 // 高亮下标
 const activeIndex = ref(0)
 // 基于高亮下标提取二级分类数据
-const subCategoryList = computed(() => { // 计算函数，以及分类变化时重新计算二级分类
+const subCategoryList = computed(() => {
+  // 计算函数，以及分类变化时重新计算二级分类
   return categoryList.value[activeIndex.value]?.children || []
 })
 
 // 数据是否加载完毕
 const isFinish = ref(false)
-
 
 onLoad(async () => {
   await Promise.all([getBannerData(), getCategoryTopData()])
@@ -51,7 +56,13 @@ onLoad(async () => {
     <view class="categories">
       <!-- 左侧：一级分类 -->
       <scroll-view class="primary" scroll-y>
-        <view v-for="(item, index) in categoryList" :key="item.id" class="item" :class="{ active: index === activeIndex }" @tap="activeIndex = index">
+        <view
+          v-for="(item, index) in categoryList"
+          :key="item.id"
+          class="item"
+          :class="{ active: index === activeIndex }"
+          @tap="activeIndex = index"
+        >
           <text class="name"> {{ item.name }} </text>
         </view>
       </scroll-view>

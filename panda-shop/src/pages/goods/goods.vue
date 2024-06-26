@@ -252,10 +252,10 @@ const onBuyNow = async (ev: SkuPopupEvent) => {
   </view>
 
   <!-- 弹出层 -->
-  <uni-popup ref="popup" type="bottom" background-color="#fff">
-    <AddressPanel v-if="popupName === 'address'" @close="popup?.close()" />
-    <ServicePanel v-if="popupName === 'service'" @close="popup?.close()" />
-  </uni-popup>
+    <uni-popup ref="popup" type="bottom" background-color="#fff">
+      <AddressPanel v-if="popupName === 'address'" @close="popup?.close()" />
+      <ServicePanel v-if="popupName === 'service'" @close="popup?.close()" />
+    </uni-popup>
 </template>
 
 <style lang="scss">
