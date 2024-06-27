@@ -13,7 +13,7 @@ const pageParams: Required<PageParams> = {
 // 猜你喜欢的列表
 const guessList = ref<GuessItem[]>([])
 // 己结束标记
-const finish = ref(false) // TODO
+const finish = ref(false)
 // 获取猜你喜欢数据
 const getHomeGoodsGuessLikeData = async () => {
   // 退出判断
@@ -60,11 +60,7 @@ defineExpose({
       :key="item.id"
       :url="`/pages/goods/goods?id=4007498`"
     >
-      <image
-        class="image"
-        mode="aspectFill"
-        :src="item.picture"
-      ></image>
+      <image class="image" mode="aspectFill" :src="item.picture"></image>
       <view class="name"> {{ item.name }} </view>
       <view class="price">
         <text class="small">¥</text>

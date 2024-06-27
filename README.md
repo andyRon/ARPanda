@@ -323,7 +323,7 @@ onLoad(() => {
 
 1. 准备组件（只有首页使用，存放到首页的 `components` ，取名 `CategoryPanel`）
 2. 导入并使用组件
-3. 设置首页底色为  `#F7F7F7`  
+3. 设置首页底色为 `#F7F7F7`  
 
 小程序页面根标签是`<page>`，类似web种的body
 
@@ -413,8 +413,6 @@ p23 8:00 `flex`属性可以智能地分配滚动的高度
 组件生命周期钩子之一是：“组件挂载完毕”
 
 ![](images/image-20240618025059769.png)
-
-
 
 #### 猜你喜欢数据类型和列表渲染
 
@@ -653,8 +651,6 @@ onLoad(() => {
 
 ### 骨架屏
 
-🔖
-
 
 
 ## 6 登录模块
@@ -763,7 +759,7 @@ const onGetphonenumberSimple = async () => {
 
 ![](images/image-20240620090528829.png)
 
-[组合式函数 | Vue.js (vuejs.org)](https://cn.vuejs.org/guide/reusability/composables.html)（Composables）一个利用 Vue 的组合式 API 来封装和复用**有状态逻辑**的函数。
+[组合式函数](https://cn.vuejs.org/guide/reusability/composables.html)（Composables）一个利用 Vue 的组合式 API 来封装和复用**有状态逻辑**的函数。
 
 猜你喜欢组合式函数实现分页加载
 
@@ -795,7 +791,7 @@ const { guessRef, onScrolltolower } = useGuessList()
 
 ### 设置页分包和预下载
 
-**小程序分包**：将小程序的**代码分割成多个部分**，分别打包成多个小程序包，==减少==小程序的==加载时间==，提高用户体验。
+**小程序==分包==**：将小程序的**代码分割成多个部分**，分别打包成多个小程序包，==减少==小程序的==加载时间==，提高用户体验。
 
 **分包预下载**：在进入小程序某个页面时，由框架**自动预下载**可能需要的分包，==提升==进入后续分包页面时的==启动速度==。
 
@@ -990,8 +986,6 @@ SKU常见于电商领域，对于前端工程师而言，更多关注 [SKU算法
 
 
 🔖  p70  不能引入sku
-
-
 
 
 
